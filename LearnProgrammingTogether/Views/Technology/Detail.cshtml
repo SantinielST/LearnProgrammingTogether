@@ -1,4 +1,4 @@
-﻿@model Group 
+﻿@model Technology
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -6,8 +6,8 @@
 }
 
 <div class="container">
-    <h1 class="my-4">Информация о группе</h1>
-    <h2><small>Ознакомтесь с информацией, она поможет решить подходит ли вам эта группа</small></h2>
+    <h1 class="my-4">Информация о технологии</h1>
+    <h2><small>Ознакомтесь с информацией о техгологии, посмотрите где её сейчас изучают</small></h2>
 
     <div class="row">
         <div class="col-md-8">
@@ -19,17 +19,17 @@
             <p>@Model.Description</p>
             <h3 class="my-3"Место нахождения:></h3>
             <ul>
-                <li>@Model.GroupCategory</li>
+                <li>@Model.TechnologyCategory</li>
                 <li>@Model.Adress.Country</li>
                 <li>@Model.Adress.Region</li>
                 <li>@Model.Adress.City</li>
                 <li>@Model.Adress.Street</li>
             </ul>
         </div>
-        
+
     </div>
 
-    <h3 class="my-4">Рекомендованные группы</h3>
+    <h3 class="my-4">Другие технологии</h3>
 
     <div class="row">
         <div class="col-md-3 col-sm-6 mb-4">
@@ -43,5 +43,5 @@
             </a>
         </div>
     </div>
-    
+
 </div>

@@ -1,5 +1,5 @@
-﻿using LearnProgrammingTogether.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnProgrammingTogether.Controllers
 {
@@ -9,7 +9,7 @@ namespace LearnProgrammingTogether.Controllers
 
         public GroupController(ApplicationDbContext contex)
         {
-           _contex = contex;
+            _contex = contex;
         }
 
         public IActionResult Index()
@@ -18,11 +18,10 @@ namespace LearnProgrammingTogether.Controllers
             return View(groups);
         }
 
-        public IActionResult Detail(int id) 
+        public IActionResult Detail(int id)
         {
-            var group = _contex.Groups.FirstOrDefault(g => g.Id == id);
+            var group = _contex.Groups.Include(a => a.Adress).FirstOrDefault(g => g.Id == id);
             return View(group);
         }
-
     }
 }
