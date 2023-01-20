@@ -1,5 +1,7 @@
 ﻿using LearnProgrammingTogether.Data.Enum;
 using LearnProgrammingTogether.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Net;
 
 namespace LearnProgrammingTogether.Data
 {
@@ -76,16 +78,16 @@ namespace LearnProgrammingTogether.Data
                     });
                     context.SaveChanges();
                 }
-                //Technology
+                //TechnologyController
                 if (!context.Technologies.Any())
                 {
                     context.Technologies.AddRange(new List<Technology>()
                     {
                         new Technology()
                         {
-                            Title = "Technology 1",
+                            Title = "TechnologyController 1",
                             Image = "https://joprblob.azureedge.net/site/blog/22b4b589-fecd-40d9-a810-2bd491448e89/e4c77aee-8214-418b-a420-2a9284aa9212.png",
-                            Description = "This is the description of the first Technology",
+                            Description = "This is the description of the first TechnologyController",
                             TechnologyCategory = TechnologyCategory.Linq,
                             Adress = new Adress()
                             {
@@ -97,9 +99,9 @@ namespace LearnProgrammingTogether.Data
                         },
                         new Technology()
                         {
-                            Title = "Technology 2",
+                            Title = "TechnologyController 2",
                             Image = "https://www.educationmesd.com/wp-content/uploads/2021/01/aspnet-featured.png",
-                            Description = "This is the description of the second Technology",
+                            Description = "This is the description of the second TechnologyController",
                             TechnologyCategory = TechnologyCategory.ASP,
                             AdressId = 5,
                             Adress = new Adress()
@@ -112,6 +114,74 @@ namespace LearnProgrammingTogether.Data
                         }
                     });
                     context.SaveChanges();
+                }
+            }
+        }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                //Roles
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await roleManager.RoleExistsAsync(UserRoles.User))
+                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+                //Users
+                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+                string adminUserEmail = "santiniel@gmail.com";
+
+                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+                if (adminUser == null)
+                {
+                    var newAdminUser = new AppUser()
+                    {
+                        NickName = "santiniel",
+                        StudyLang = "C#",
+                        TypeFramework = ".Net 6.0",
+                        Level = "Profi",
+                        UserName = "Pavel",
+                        Email = adminUserEmail,
+                        EmailConfirmed = true,
+                        Adress = new Adress()
+                        {
+                            Street = "123 Main St",
+                            City = "Charlotte",
+                            Region = "NC",
+                            Country = "Россия"
+                        }
+                    };
+                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+                }
+
+                string appUserEmail = "user@etickets.com";
+
+                var appUser = await userManager.FindByEmailAsync(appUserEmail);
+                if (appUser == null)
+                {
+                    var newAppUser = new AppUser()
+                    {
+                        NickName = "app-user",
+                        UserName = "app-user",
+                        StudyLang = "C#",
+                        TypeFramework = ".Net 6.0",
+                        Level = "Noob",
+                        Email = appUserEmail,
+                        EmailConfirmed = true,
+                        Adress = new Adress()
+                        {
+                            Street = "123 Main St",
+                            City = "Charlotte",
+                            Region = "NC",
+                            Country = "Russia"
+                        }
+                    };
+                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
         }

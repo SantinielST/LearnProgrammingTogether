@@ -50,7 +50,7 @@ namespace LearnProgrammingTogether.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("LearnProgrammingTogether.Models.AppUser", b =>
@@ -120,7 +120,7 @@ namespace LearnProgrammingTogether.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("LearnProgrammingTogether.Models.Technology", b =>
+            modelBuilder.Entity("LearnProgrammingTogether.Models.TechnologyController", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -185,7 +185,7 @@ namespace LearnProgrammingTogether.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("LearnProgrammingTogether.Models.Technology", b =>
+            modelBuilder.Entity("LearnProgrammingTogether.Models.TechnologyController", b =>
                 {
                     b.HasOne("Adress", "Adress")
                         .WithMany()

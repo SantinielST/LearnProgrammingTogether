@@ -1,0 +1,55 @@
+﻿@using LearnProgrammingTogether.ViewModels;
+@model EditGroupViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" value="AddressId" id="AddressId" />
+    <div class="form-group">
+        <label asp-for="Title">Новое краткое описание</label>
+        <input asp-for="Title" class="form-control" placeholder="Введите краткое описание">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Новое описание</label>
+        <textarea asp-for="Description" class="form-control" placeholder="Ввседите новое описание" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GroupCategory">Категория группы</label>
+        <select asp-for="GroupCategory" asp-items="@Html.GetEnumSelectList<GroupCategory>()" class="form-control">
+            <option selected="selected" value="">--Select--</option>
+        </select>
+        <span asp-validation-for="GroupCategory" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress.Street">Улица:</label>
+        <input asp-for="Adress.Street" class="form-control" placeholder="Введите новую улицу">
+        <span asp-validation-for="Adress.Street" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress.City">Город:</label>
+        <input asp-for="Adress.City" class="form-control" placeholder="Введите новый город">
+        <span asp-validation-for="Adress.Street" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress.Region">Регион:</label>
+        <input asp-for="Adress.Region" class="form-control" placeholder="Введите новый регион">
+        <span asp-validation-for="Adress.Region" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress.Country">Страна:</label>
+        <input asp-for="Adress.Country" class="form-control" placeholder="Введите новую страну">
+        <span asp-validation-for="Adress.Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Новое фото:</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
+        <br />
+    </div>
+    <button type="submit" class="btn btn-primary">Изменить группу</button>
+</form>

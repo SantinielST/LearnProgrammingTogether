@@ -11,7 +11,7 @@ namespace LearnProgrammingTogether.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Adresses",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -43,7 +43,7 @@ namespace LearnProgrammingTogether.Migrations
                     table.ForeignKey(
                         name: "FK_AppUser_Adresses_AdressId",
                         column: x => x.AdressId,
-                        principalTable: "Adresses",
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                 });
 
@@ -66,7 +66,7 @@ namespace LearnProgrammingTogether.Migrations
                     table.ForeignKey(
                         name: "FK_Groups_Adresses_AdressId",
                         column: x => x.AdressId,
-                        principalTable: "Adresses",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -95,7 +95,7 @@ namespace LearnProgrammingTogether.Migrations
                     table.ForeignKey(
                         name: "FK_Technologies_Adresses_AdressId",
                         column: x => x.AdressId,
-                        principalTable: "Adresses",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -144,7 +144,7 @@ namespace LearnProgrammingTogether.Migrations
                 name: "AppUser");
 
             migrationBuilder.DropTable(
-                name: "Adresses");
+                name: "Addresses");
         }
     }
 }
