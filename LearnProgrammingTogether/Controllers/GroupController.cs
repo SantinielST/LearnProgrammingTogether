@@ -133,5 +133,30 @@ namespace LearnProgrammingTogether.Controllers
                 return View(groupVM);
             }
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var groupDetails = await _groupRepository.GetByIdAsync(id);
+
+            if (groupDetails == null)
+            {
+                return View("Error");
+            }
+            return View(groupDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteGroup(int id)
+        {
+            var groupDetails = await _groupRepository.GetByIdAsync(id);
+
+            if (groupDetails == null)
+            {
+                return View("Error");
+            }
+
+            _groupRepository.Delete(groupDetails);
+            return RedirectToAction("Index");
+        }
     }
 }

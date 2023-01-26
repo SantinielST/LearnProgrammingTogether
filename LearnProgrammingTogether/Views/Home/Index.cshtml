@@ -1,11 +1,13 @@
-﻿@{
+﻿@using LearnProgrammingTogether.ViewModels
+@model HomeViewModel
+@{
     ViewData["Title"] = "Главная страница";
 }
 
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Учимся вместе</h1>
+        <div class="col-lg-11 col-md-15 mx-auto">
+            <h1 class="fw-light">Учимся вместе</h1><br />
             <p class="lead text-muted">Если ты, как и я когда - то начал изучать программирование, и ты не знаешь к кому обратиться за советом или похвастаться успехами, а близкие тебя не понимают! Найди или создай группу в своём регионе! Для очных и онлайн встреч.</p>
             <p>
                 <a href="#" class="btn btn-primary my-2">Main call to action</a>
@@ -17,54 +19,36 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <div class="row">
+            <h1 class="fw-light">Группы рядом с @Model.City, @Model.Region</h1>
+            @if (Model.Groups.Count() < 1)
+            {
+                <h1 class="fw-light">Не найдено групп в вашем регионе! <a asp-area="" asp-controller="Account" asp-action="Login">Войдите в аккаунт</a>
+                   и добавьте одну!
+                </h1>
+            }
+            else
+            {
+                @foreach (var item in Model.Groups)
+                {
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <img src="@item.Image" class="bd-placeholder-img card-img-top" width="100%" height="225" /> 
+                            <div class="card-body">
+                                <p class="card-text">@item.Title</p>
+                                <p class="card-text">@item.Description</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a type="btn btn-success" asp-controller="Group" asp-action="Detail" asp-route-id="@item.Id"
+                                            class="btn btn-sm btn-outline-secondary">Посмотреть информацию</a>
+                                    </div>
+                                    @*<small class="text-muted">9 mins</small>*@
+                                </div>
                             </div>
-                            <small class="text-muted">9 mins</small>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+                }
+            }
         </div>
     </div>
 </div>

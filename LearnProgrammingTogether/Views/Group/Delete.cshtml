@@ -1,0 +1,61 @@
+﻿@model Group
+
+<div class="container">
+    <h1 class="my-4">Удаление группы</h1>
+    <h2><small>Вы уверены, что хотите удалить эту группу?</small></h2>
+
+    <form method="post" asp-action="Delete" enctype="multipart/form-data">
+        <input type="hidden" value="AddressId" id="AddressId" />
+        <div class="form-group">
+            <label asp-for="Title">Краткое описание</label>
+            <input asp-for="Title" class="form-control" placeholder="Title" readonly>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Описание</label>
+            <textarea asp-for="Description" class="form-control" placeholder="Description" rows="3" readonly></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GroupCategory">Категория группы</label>
+            <select asp-for="GroupCategory" asp-items="@Html.GetEnumSelectList<GroupCategory>()" class="form-control" disabled>
+                <option selected="selected" value="">--Select--</option>
+            </select>
+            <span asp-validation-for="GroupCategory" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress.Street">Улица:</label>
+            <input asp-for="Adress.Street" class="form-control" placeholder="Adress.Street" readonly>
+            <span asp-validation-for="Adress.Street" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress.City">Город:</label>
+            <input asp-for="Adress.City" class="form-control" placeholder="Adress.Cit" readonly>
+            <span asp-validation-for="Adress.Street" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress.Region">Регион:</label>
+            <input asp-for="Adress.Region" class="form-control" placeholder="Adress.Region" readonly>
+            <span asp-validation-for="Adress.Region" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress.Country">Страна:</label>
+            <input asp-for="Adress.Country" class="form-control" placeholder="Adress.Country" readonly>
+            <span asp-validation-for="Adress.Country" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="Image">Фото группы</label>
+            <img class="img-fluid" src="@Model.Image" width="15%" height="15%" alt="Card image cap" />
+            <br />
+        </div>
+    </form>
+      
+        <div class="form-group">
+           <form action="Delete" method="post">
+               <input type="hidden" asp-for="Id" />
+               <input type="submit" value="Подтвердить" class="btn-danger float-right mt-3" />
+           </form>
+       </div>
+    
+</div>

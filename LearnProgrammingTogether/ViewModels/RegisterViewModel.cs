@@ -23,6 +23,7 @@ namespace LearnProgrammingTogether.ViewModels
 
         [Display(Name = "Имя пользователя")]
         [Required(ErrorMessage = "Тебуется ввести имя пользователя")]
+        [DataType(DataType.Text)]
         public string UserName { get; set; }
 
         [Display(Name = "Никнейм")]

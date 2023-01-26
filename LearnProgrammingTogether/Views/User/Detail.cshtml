@@ -32,12 +32,12 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8">
-                    <div class="media">
-                        @*<img alt="Image" src="@Model.ProfileImageUrl" class="mr-md-5 avatar avatar-xlg">*@
+                     <div class="col-md-5">
+                        <img class="figure-img" src="" width="80%" height="80%" alt="Card image cap"/>
+                      
                         <div class="media-body">
                             <div class="mb-3">
                                 <h1 class="h2 mb-2">@Model.NickName</h1>
-                               @* <span class="text-muted"><i class="icon-location"></i>@Model.Location</span>*@
                             </div>
                             <p class="text-muted">Узучаемый язык: @Model.StudyLang</p>
                             <p class="text-muted">Фреймворк: @Model.TypeFramework</p>
@@ -45,7 +45,7 @@
                             <p>
                                 Bit of a go-getter me, creating lovely things that help others. You'll most often find me out back in the hammock, listening to tunes and bending pixels to my will.
                             </p>
-                            <div>
+                           @* <div>
                                 <button class="btn btn-outline-primary" data-toggle="button"><i class="icon-add-user"></i> Follow</button>
                                 <button class="btn btn-outline-primary">
                                     <i class="icon-mail"></i>
@@ -61,7 +61,7 @@
                                         <a class="dropdown-item" href="#">Block</a>
                                         <a class="dropdown-item" href="#">Report</a>
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -69,11 +69,14 @@
                 <!--end of col-->
             </div>
             <!--end of row-->
-        </div>
+        
         <!--end of container-->
     </section>
+</div>
+
+    
     <!--end of section-->
-    <section class="flush-with-above space-0">
+   @* <section class="flush-with-above space-0">
         <div class="bg-white">
             <div class="container">
                 <div class="row">
@@ -426,7 +429,7 @@
                                     <div>
                                         <ul class="list-inline list-spacing-sm">
 
-                                            <li class="list-inline-item">
+                                         @*   <li class="list-inline-item">
                                                 <img alt="Group member" class="avatar avatar-xs" src="/img/avatar-male-4.jpg">
                                             </li>
 
@@ -520,8 +523,8 @@
                                     <button class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Follow">
                                         <i class="icon-add-user"></i>
                                     </button>
-                                </div>
-                            </div>
+                                </div>*@
+                         @*   </div>
                             <!-- end card -->
                         </div>
 
@@ -909,5 +912,6 @@
             <!--end of row-->
         </div>
         <!--end of container-->
-    </footer>
-</div>
+    </footer>*@
+@*</div>
+*@
