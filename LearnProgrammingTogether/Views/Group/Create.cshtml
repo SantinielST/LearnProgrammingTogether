@@ -7,9 +7,10 @@
 }
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId"/>
     <div class="form-group">
         <label asp-for="Title">Краткое описание</label>
-        <input asp-for="Title" class="form-control" placeholder="Введите краткое описание" />
+        <input asp-for="Title" class="form-control" placeholder="Введите краткое описание"/>
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">

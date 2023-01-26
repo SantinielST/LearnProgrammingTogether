@@ -9,6 +9,7 @@ namespace LearnProgrammingTogether.Models
         public string? StudyLang { get; set; }
         public string? Level { get; set; }
         public string? TypeFramework { get; set; }
+        public string? ProfileImageUrl { get; set; }  
         [ForeignKey("Adress")]
         public int? AdressId { get; set; }
         public Adress? Adress { get; set; }

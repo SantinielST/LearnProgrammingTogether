@@ -11,11 +11,13 @@ namespace LearnProgrammingTogether.Controllers
     {
         private readonly ITechnologyRepository _technologyRepository;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public TechnologyController(ITechnologyRepository technologyRepository,  IPhotoService photoService)
+        public TechnologyController(ITechnologyRepository technologyRepository,  IPhotoService photoService, IHttpContextAccessor contextAccessor)
         {
             _technologyRepository = technologyRepository;
             _photoService = photoService;
+            _contextAccessor = contextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -32,7 +34,12 @@ namespace LearnProgrammingTogether.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var currentUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var createTechnologyViewModel = new CreateTechnologyViewModel()
+            {
+                AppUserId = currentUserId,
+            };
+            return View(createTechnologyViewModel);
         }
 
         [HttpPost]
@@ -46,6 +53,7 @@ namespace LearnProgrammingTogether.Controllers
                     Title = technologyVM.Title,
                     Description = technologyVM.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = technologyVM.AppUserId,
                     Adress = new Adress()
                     {
                         Street = technologyVM.Adress.Street,

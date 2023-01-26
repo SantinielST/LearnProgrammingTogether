@@ -1,0 +1,57 @@
+﻿@using LearnProgrammingTogether.ViewModels
+@model EditUserViewModel
+
+
+<form asp-action="EditUserProfile" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="Id" name="Id" asp-for="Id" />
+    <div class="col-6">
+        <div class="form-group">
+            <label asp-for="NickName">Никнейм:</label>
+            <input asp-for="NickName" type="text" class="form-control form-control-lg" />
+            <span asp-validation-for="NickName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label asp-for="StudyLang">Изучаемый язык:</label>
+            <input asp-for="StudyLang" type="text" class="form-control form-control-lg" />
+            <span asp-validation-for="StudyLang" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label asp-for="TypeFramework">Фреймворк:</label>
+            <input asp-for="TypeFramework" type="text" class="form-control form-control-lg" />
+            <span asp-validation-for="TypeFramework" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <label asp-for="Level">Уровень владения:</label>
+            <input asp-for="Level" type="text" class="form-control form-control-lg" />
+            <span asp-validation-for="Level" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Фото аккаунта:</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Фото" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+        <br />
+    </div>
+   @* <div class="col-12">
+        <div class="form-group">
+            <label for="about-me">About me:</label>
+            <textarea class="form-control form-control-lg"
+                      name="profileBio"
+                      rows="4"
+                      id="about-me"></textarea>
+        </div>
+    </div>*@
+    <div class="col-12">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Принять изменения</button>
+        </div>
+    </div>
+</form>
+                     
+                     

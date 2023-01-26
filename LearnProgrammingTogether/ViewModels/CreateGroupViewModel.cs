@@ -8,5 +8,6 @@
         public Adress Adress { get; set; }
         public IFormFile Image { get; set; }
         public GroupCategory GroupCategory { get; set; }
+        public string AppUserId { get; set; }
     }
 }

@@ -21,9 +21,14 @@
                             <div class="btn-group">
                                 <a type="btn btn-success" asp-controller="Group" asp-action="Detail" asp-route-id="@item.Id"
                                 class="btn btn-sm btn-outline-secondary">Посмотреть информацию</a>
-                                <a type="btn btn-success" asp-controller="Group" asp-action="Edit" asp-route-id="@item.Id"
-                                class="btn btn-sm btn-outline-secondary">Изменить группу</a>
-                            </div>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Group" asp-action="Edit" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-secondary">Изменить</a>
+                                        <a type="btn btn-success" asp-controller="Group" asp-action="Delete" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-secondary">Удалить</a>
+                                    }
+                                </div>
                         </div>
                             <small class="text-muted">@item.GroupCategory</small>
                     </div>

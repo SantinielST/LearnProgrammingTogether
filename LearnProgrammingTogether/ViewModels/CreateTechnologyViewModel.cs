@@ -9,5 +9,6 @@ namespace LearnProgrammingTogether.ViewModels
         public IFormFile Image { get; set; }
         public Adress Adress { get; set; }
         public TechnologyCategory TechnologyCategory { get; set; }
+        public string AppUserId { get; set; }
     }
 }

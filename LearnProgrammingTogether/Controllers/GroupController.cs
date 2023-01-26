@@ -9,11 +9,13 @@ namespace LearnProgrammingTogether.Controllers
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public GroupController(IGroupRepository groupRepository, IPhotoService photoService)
+        public GroupController(IGroupRepository groupRepository, IPhotoService photoService, IHttpContextAccessor contextAccessor)
         {
             _groupRepository = groupRepository;
             _photoService = photoService;
+            _contextAccessor = contextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -30,7 +32,12 @@ namespace LearnProgrammingTogether.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var currentUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var createGroupViewModel = new CreateGroupViewModel()
+            {
+                AppUserId = currentUserId,
+            };
+            return View(createGroupViewModel);
         }
 
         [HttpPost]
@@ -44,6 +51,7 @@ namespace LearnProgrammingTogether.Controllers
                     Title = groupVM.Title,
                     Description = groupVM.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = groupVM.AppUserId,
                     Adress = new Adress()
                     {
                         Street = groupVM.Adress.Street,
